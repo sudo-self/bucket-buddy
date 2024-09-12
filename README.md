@@ -19,7 +19,7 @@ R2 storage object primary functions
 3. DELETE
 4. LIST
 
-Replace src `index.js` with the one in this repo. 
+replace the worker at src / `index.js` with the worker in this repo. 
 
 ## R2 binding
 
