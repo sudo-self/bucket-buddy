@@ -1,8 +1,8 @@
 ## Bucket Buddy
 
-1. index.js [the worker]
+1. index.js [worker]<br>
    
-3. index.html [in thee root of the R2 bucket]
+2. index.html [R2 bucket]<br>
 
 
 
