@@ -6,14 +6,14 @@
 npm create cloudflare@latest -- your-worker-name
 ```
 
-R2 storage objects primary functions.
+R2 storage object primary functions
 
 1. GET
 2. PUT
 3. DELETE
 4. LIST
 
-Replace src `index.js `with the one in this repo. 
+Replace src `index.js` with the one in this repo. 
 
 ## R2 binding
 
