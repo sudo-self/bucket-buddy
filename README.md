@@ -73,7 +73,12 @@ configure your bucket for public acess then upload the `index.html` from this re
 
 <YOUR_WORKER>.<YOUR_SUBDOMAIN>.workers.dev/<strong>index.html</strong><br>
 
-Now have a mini GUI to interact with your R2 for GET, PUT, DELETE, LIST.<br>
+Now have a mini GUI to interact with your R2<br>
+
+1.GET
+2.PUT
+3.DELETE
+4.LIST
 
 <img width="832" alt="Screenshot 2024-09-11 at 10 21 01 PM" src="https://github.com/user-attachments/assets/9be1a2e6-0623-4259-b759-942b12e43e9a">
 
