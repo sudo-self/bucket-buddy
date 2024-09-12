@@ -1,0 +1,353 @@
+<!-- YOURWORKER.workers.dev/index.html -->
+
+<title>Bucket Buddy</title>
+    <style>
+        a {
+                  text-decoration: none;
+              }
+
+              h1 {
+                  font-size: 3rem;
+                  background: linear-gradient(to right, #100432, orange, #100432);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  background-clip: text;
+                  text-fill-color: transparent;
+              }
+
+              html, body {
+                  height: 100%;
+                  margin: 0;
+              }
+
+              body {
+                  display: flex;
+                  flex-direction: column;
+                  font-family: Arial, sans-serif;
+                  background-color: #939498;
+                  color: #333;
+                  box-sizing: border-box;
+              }
+
+              .container {
+                  flex: 1;
+                  max-width: 800px;
+                  margin: auto;
+                  padding: 20px;
+                  background: #fff;
+                  border-radius: 8px;
+                  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                  position: relative;
+                  overflow: hidden;
+              }
+
+              h1, h4 {
+                  text-align: center;
+              }
+
+              .form-group {
+                  margin-bottom: 15px;
+              }
+
+              .form-group input, .form-group button {
+                  width: 100%;
+                  padding: 8px;
+                  box-sizing: border-box;
+              }
+
+              .form-group {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+              }
+
+              .form-group button {
+                  flex: 1 1 calc(25% - 10px);
+                  background-color: #100432;
+                  color: #fff;
+                  cursor: pointer;
+                  border-radius: 4px;
+              }
+
+              .response {
+                  margin-top: 20px;
+                  padding: 10px;
+                  background-color: #e9ecef;
+                  border-left: 5px solid #007bff;
+              }
+
+              .file-list {
+                  max-height: 300px;
+                  overflow-y: auto;
+                  padding: 0;
+                  list-style: none;
+                  border: 1px solid #939498;
+                  border-radius: 4px;
+                  margin: 0;
+                  box-sizing: border-box;
+              }
+
+              .file-list li {
+                  display: flex;
+                  align-items: center;
+                  padding: 10px;
+                  border-bottom: 1px solid #ddd;
+                  gap: 10px;
+              }
+
+              .file-list img {
+                  max-width: 100px;
+                  max-height: 100px;
+                  width: 100px;
+                  height: auto;
+                  border-radius: 4px;
+              }
+
+              .file-list .file-name {
+                  flex: 1;
+                  overflow-wrap: break-word;
+              }
+
+              .modal {
+                  display: none;
+                  position: fixed;
+                  z-index: 1;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  overflow: auto;
+                  background-color: rgb(0,0,0);
+                  background-color: rgba(0,0,0,0.8);
+              }
+
+              .modal-content {
+                  background-color: #fefefe;
+                  margin: 15% auto;
+                  padding: 20px;
+                  border: 1px solid #888;
+                  width: 80%;
+                  max-width: 700px;
+              }
+
+              .close {
+                  color: #aaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+              }
+
+              .close:hover,
+              .close:focus {
+                  color: black;
+                  text-decoration: none;
+                  cursor: pointer;
+              }
+
+              footer {
+                  text-align: center;
+                  padding: 10px;
+                  background-color: #100432;
+                  color: #fff;
+              }
+
+              @media (max-width: 600px) {
+                  .form-group button {
+                      flex: 1 1 100%;
+                  }
+
+                  .file-list {
+                      max-height: 200px;
+                  }
+              }
+
+
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <h1>Bucket🪣Buddy</h1>
+
+      <!-- UPDATE THIS WITH YOUR WORKER URL --> 
+      <h4><a href="https://[YOUR-WORKER-NAME] .workers.dev/index.html">[YOUR GUI NAME AND LINK]</a></h4>
+
+        <div class="form-group">
+            <label for="key"></label>
+            <input type="text" id="key" placeholder="Enter the object key" />
+        </div>
+
+        <div class="form-group">
+            <label for="file"></label>
+            <input type="file" id="file" />
+        </div>
+
+        <div class="form-group">
+            <button onclick="performPut()">PUT</button>
+            <button onclick="performGet(document.getElementById('key').value)">GET</button>
+            <button onclick="performDelete()">DELETE</button>
+            <button onclick="listObjects()">LIST</button>
+        </div>
+
+        <div id="response" class="response"></div>
+
+        <ul id="fileList" class="file-list"></ul>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImg" style="width: 100%; height: auto;">
+        </div>
+    </div>
+
+    <footer>
+      &nbsp;Bucket🪣Buddy&copy;
+    </footer>
+
+    <script nonce="MzIyMDg1MzU5LDI1NDk3Mjk0NzM=">
+        const apiUrl = 'https://server.jessejesse.workers.dev';
+        const apiKey = 'ce2AoaisOsdq6D0xRnRMLfS5VKuQYXuD-x_xXga1';
+
+        function displayResponse(message, isError = false) {
+            const responseElement = document.getElementById('response');
+            responseElement.textContent = message;
+            responseElement.className = `response ${isError ? 'error' : 'success'}`;
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        function openModal(imgSrc) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = imgSrc;
+            modal.style.display = 'block';
+        }
+
+        async function performPut() {
+            const key = document.getElementById('key').value;
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+
+            if (!key || !file) {
+                displayResponse('Key and file are required for PUT request.', true);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${apiUrl}/${key}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/octet-stream'
+                    },
+                    body: file,
+                });
+
+                if (response.ok) {
+                    displayResponse(`Successfully stored file with key: ${key}!`);
+                    listObjects();
+                } else {
+                    displayResponse(`Failed to store file. Status: ${response.status}`, true);
+                }
+            } catch (error) {
+                displayResponse(`Error: ${error.message}`, true);
+            }
+        }
+
+        async function performGet(key) {
+            if (!key) {
+                displayResponse('Key is required for GET request.', true);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${apiUrl}/${key}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const imgURL = URL.createObjectURL(blob);
+                    openModal(imgURL);
+                } else {
+                    displayResponse(`Object not found. Status: ${response.status}`, true);
+                }
+            } catch (error) {
+                displayResponse(`Error: ${error.message}`, true);
+            }
+        }
+
+        async function performDelete() {
+            const key = document.getElementById('key').value;
+
+            if (!key) {
+                displayResponse('Key is required for DELETE request.', true);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${apiUrl}/${key}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                    },
+                });
+
+                if (response.ok) {
+                    displayResponse(`Successfully deleted data with key: ${key}!`);
+                    listObjects();
+                } else {
+                    displayResponse(`Failed to delete data. Status: ${response.status}`, true);
+                }
+            } catch (error) {
+                displayResponse(`Error: ${error.message}`, true);
+            }
+        }
+
+        async function listObjects() {
+            try {
+                const response = await fetch(`${apiUrl}/list`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const fileKeys = await response.json();
+                    const fileList = document.getElementById('fileList');
+                    fileList.innerHTML = '';
+
+                    for (const key of fileKeys) {
+                        const listItem = document.createElement('li');
+                        const fileName = document.createTextNode(key);
+                        listItem.appendChild(fileName);
+
+                        if (key.match(/\.(png|jpg|jpeg|svg)$/i)) {
+                            const thumbnail = document.createElement('img');
+                            thumbnail.src = `${apiUrl}/${key}`;
+                            thumbnail.alt = key;
+                            thumbnail.onclick = () => performGet(key);
+                            listItem.appendChild(thumbnail);
+                        }
+                        
+                        fileList.appendChild(listItem);
+                    }
+                } else {
+                    displayResponse(`Failed to list objects. Status: ${response.status}`, true);
+                }
+            } catch (error) {
+                displayResponse(`Error: ${error.message}`, true);
+            }
+        }
+
+        listObjects();
+    </script>
+</body>
+</html>
+<!-- YOURWORKER.workers.dev/index.html -->
