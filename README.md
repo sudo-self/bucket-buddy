@@ -1,5 +1,7 @@
 # Bucket Buddy
 
+<img width="396" alt="Screenshot 2024-09-11 at 2 48 49 PM" src="https://github.com/user-attachments/assets/a6d06808-bfa1-4574-8097-3bd8283f2514">
+
 ```
 npm create cloudflare@latest -- your-worker-name
 ```
