@@ -53,8 +53,10 @@ bucket_name = 'your-bucket-name-here'
 place an R2 storage API token from cloudflare
 
 ```
-wrangler secret put API_KEY
+wrangler secret put MY_BUCKET
 ```
+Then the API KEY as the secret ***************<br>
+
 Deploy your worker
 
 ```
