@@ -1,5 +1,11 @@
 ## Bucket Buddy
 
+1. index.js [the worker]
+   
+3. index.html [in thee root of the R2 bucket]
+
+
+
 <img width="396" alt="Screenshot 2024-09-11 at 2 48 49 PM" src="https://github.com/user-attachments/assets/1906c175-31ba-4d25-b1da-ce2f5f43a47e">
 
 ```
