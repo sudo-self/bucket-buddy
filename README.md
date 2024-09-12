@@ -94,8 +94,8 @@ Each action with the object requires a KEY.
 
 <img width="832" alt="Screenshot 2024-09-11 at 10 21 01 PM" src="https://github.com/user-attachments/assets/9be1a2e6-0623-4259-b759-942b12e43e9a">
 
-**** establish the connection NOT made for production.
-**** html is set up mainly for images but can modified to fit the unstructed data in your bucket
+****establish the connection NOT made for production****
+
 
 
 
