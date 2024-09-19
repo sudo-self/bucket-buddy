@@ -91,14 +91,15 @@
     }
 
     .file-list {
-        max-height: 300px;
+        max-height: 400px;
         overflow-y: auto;
         padding: 0;
         list-style: none;
-        border: 1px solid #939498;
+        border: 1px solid #ddd;
         border-radius: 4px;
         margin: 0;
         box-sizing: border-box;
+        background: #f9f9f9;
     }
 
     .file-list li {
@@ -107,6 +108,12 @@
         padding: 10px;
         border-bottom: 1px solid #ddd;
         gap: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .file-list li:hover {
+        background-color: #e0e0e0;
     }
 
     .file-list img {
@@ -115,9 +122,10 @@
         width: 100px;
         height: auto;
         border-radius: 4px;
+        object-fit: cover;
     }
 
-    .file-list .file-name {
+    .file-name {
         flex: 1;
         overflow-wrap: break-word;
     }
@@ -218,7 +226,7 @@
 
     <script>
     const apiUrl = 'https://server.jessejesse.workers.dev';
-    const apiKey = 'YOUR BUCKET API KEY';
+    const apiKey = 'XXXXXXXXXXXXXXXXXXXX';
 
     function displayResponse(message, isError=false) {
         const responseElement = document.getElementById('response');
@@ -324,12 +332,19 @@
 
                 data.files.forEach((file) => {
                     const listItem = document.createElement('li');
-                    listItem.textContent = file.key;
+                    listItem.className = 'file-item';
 
-                    
+                    const fileName = document.createElement('span');
+                    fileName.className = 'file-name';
+                    fileName.textContent = file.key;
+                    listItem.appendChild(fileName);
+
+                    // Optional: Add a thumbnail for image files
                     if (file.key.match(/\.(jpg|jpeg|png|gif)$/i)) {
                         const img = document.createElement('img');
                         img.src = `${apiUrl}/${file.key}`;
+                        img.style.cursor = 'pointer';
+                        img.addEventListener('click', () => openModal(img.src));
                         listItem.appendChild(img);
                     }
 
