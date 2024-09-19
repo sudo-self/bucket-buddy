@@ -1,19 +1,21 @@
-// src/index.js
+
+
 var src_default = {
   async fetch(request, env) {
     const url = new URL(request.url);
     const key = url.pathname.slice(1);
     const headers = new Headers({
       "Access-Control-Allow-Origin": "*",
-      // or specify domains that fit your access policies
       "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
       "Access-Control-Allow-Headers": "*",
       "Access-Control-Expose-Headers": "Content-Length, Content-Type",
       "Access-Control-Max-Age": "3600"
     });
+
     if (request.method === "OPTIONS") {
       return new Response(null, { headers });
     }
+
     switch (request.method) {
       case "PUT":
         if (key) {
@@ -51,17 +53,20 @@ var src_default = {
     }
   }
 };
+
 async function listObjects(bucket, headers) {
   try {
     const list = await bucket.list();
-    const keys = list.objects.map((obj) => obj.key);
-    return new Response(JSON.stringify(keys), {
+    const files = list.objects.map((obj) => ({ key: obj.key }));
+    return new Response(JSON.stringify({ files }), {
       headers: { ...headers, "Content-Type": "application/json" }
     });
   } catch (error) {
     return new Response(`Error listing objects: ${error.message}`, { status: 500, headers });
   }
 }
+
 export {
   src_default as default
 };
+
