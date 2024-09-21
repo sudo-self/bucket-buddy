@@ -12,12 +12,14 @@
 npm create cloudflare@latest -- your-worker-name
 ```
 
-R2 storage object primary functions
+### CRUD (Create, Read, Update, Delete) 
 
-1. GET
-2. PUT
-3. DELETE
-4. LIST
+1. PUT: Uploads an object to the bucket.
+2. GET: Retrieves an object from the bucket.
+3. DELETE: Removes an object from the bucket.
+4. LIST: Retrieves a list of objects in the bucket.
+   
+
 
 replace the worker at src / `index.js` with the worker in this repo. 
 
