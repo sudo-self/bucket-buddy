@@ -87,12 +87,6 @@ configure your bucket for public acess then upload the `index.html` from this re
 
 Now have a mini GUI to interact with your R2<br>
 
-Each action with the object requires a KEY. 
-
-1. PUT<br>
-2. GET<br>
-3. DELETE<br>
-4. LIST<br>
 
 <img width="1440" alt="Screenshot 2024-09-21 at 5 23 35 PM" src="https://github.com/user-attachments/assets/463d7083-5ad9-418b-92f8-5d0540371d5d">
 
