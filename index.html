@@ -195,11 +195,11 @@
     <div class="container" id="mainContainer">
         <h1>Bucket🪣Buddy</h1>
         <h4>
-            <a href="https://server.jessejesse.workers.dev/index.html">server.jessejesse.workers.dev</a>
+            <a href="https://server.jessejesse.workers.dev/index.html">workers&nbsp;&#10085;&nbsp;.dev</a>
         </h4>
 
         <div class="form-group">
-            <input type="text" id="key" placeholder="enter the object name.type"/>
+            <input type="text" id="key" placeholder="enter the object 🔑 "/>
         </div>
 
         <div class="form-group">
@@ -225,12 +225,16 @@
     </div>
 
     <footer>
-        &nbsp;Bucket🪣Buddy&copy;
+        𝕏&nbsp;
+        <a href="https://x.com/iLostmyipad" style="color: inherit; text-decoration: none;">
+            <span style="color: orange;">iLostmyipad</span>
+        </a>
     </footer>
+
 
     <script>
         const apiUrl = 'https://server.jessejesse.workers.dev';
-    
+        const apiKey = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'; //wrangler secret put
 
         function displayResponse(message, isError = false) {
             const responseElement = document.getElementById('response');
@@ -249,13 +253,20 @@
             modal.style.display = 'block';
         }
 
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
         async function performPut() {
             const key = document.getElementById('key').value;
             const fileInput = document.getElementById('file');
             const file = fileInput.files[0];
 
             if (!key || !file) {
-                displayResponse('Key and file are required for PUT request', true);
+                displayResponse('🔑 and 🗄 required', true);
                 return;
             }
 
@@ -268,7 +279,7 @@
                 });
 
                 if (response.ok) {
-                    displayResponse(`Put ${key} successfully!`);
+                    displayResponse(`🤜✨🤛 ${key} 🪣`);
                 } else {
                     const text = await response.text();
                     displayResponse(`Error: ${text}`, true);
@@ -280,7 +291,7 @@
 
         async function performGet(key) {
             if (!key) {
-                displayResponse('Key is required for GET request', true);
+                displayResponse('🔑 required ', true);
                 return;
             }
 
@@ -305,7 +316,7 @@
             const key = document.getElementById('key').value;
 
             if (!key) {
-                displayResponse('Key is required for DELETE request', true);
+                displayResponse('🔑 and 🗄 required', true);
                 return;
             }
 
@@ -315,7 +326,7 @@
                 });
 
                 if (response.ok) {
-                    displayResponse(`Deleted ${key} successfully!`);
+                    displayResponse(`❌ ${key} 🤷‍♂️!`);
                 } else {
                     const text = await response.text();
                     displayResponse(`Error: ${text}`, true);
@@ -332,7 +343,6 @@
                 
                 console.log('Server response:', data);
 
-              
                 if (!data.files || !Array.isArray(data.files)) {
                     displayResponse('Unexpected response format: expected an array', true);
                     return;
@@ -350,7 +360,6 @@
                     fileName.textContent = file.key;
                     listItem.appendChild(fileName);
 
-         
                     if (file.key.match(/\.(jpg|jpeg|png|gif)$/i)) {
                         const img = document.createElement('img');
                         img.src = `${apiUrl}/${file.key}`;
@@ -361,14 +370,10 @@
 
                     fileList.appendChild(listItem);
                 });
-
-                displayResponse('File list fetched successfully!');
             } catch (error) {
                 displayResponse(`Error: ${error.message}`, true);
             }
         }
-
-
     </script>
 </body>
 </html>
