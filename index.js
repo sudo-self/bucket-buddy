@@ -1,3 +1,19 @@
+/*  src/index.js  
+
+ wrangler secret put: MY_BUCKET
+ secret: Your-Api-key
+ cross-origin
+
+ "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE",
+      "Access-Control-Allow-Headers": "*", <-- set domain name
+      "Access-Control-Expose-Headers": "Content-Length, Content-Type",
+      "Access-Control-Max-Age": "3600"
+    });
+
+    your-worker-.workers.dev/           =  Object Not Found 
+    your-worker-.workers.dev/index.html = bucket_buddy  
+ */
 
 
 var src_default = {
