@@ -72,7 +72,9 @@ bucket_name = 'your-bucket-name-here'<br>
 ### macOS app included unzip the .tar then run  the executable 
 <code>tar -xvf bucketbuddy.tar</code><br>
 <code>./bucketbuddy</code><br>
-ENJOY!
+
+
+
 
 
 
