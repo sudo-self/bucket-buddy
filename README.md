@@ -11,8 +11,6 @@ Bucket Buddy is a tool that allows users to interact with Cloudflare R2 storage 
 1. **index.js** - [Worker]
 2. **index.html** - [R2 Bucket]
 
-![GUI Screenshot](https://github.com/user-attachments/assets/1906c175-31ba-4d25-b1da-ce2f5f43a47e)
-
 ## Getting Started
 
 To create your Cloudflare Worker, run the following command:
