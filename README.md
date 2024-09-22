@@ -90,9 +90,17 @@ Now have a mini GUI to interact with your R2<br>
 
 <img width="1440" alt="Screenshot 2024-09-21 at 5 23 35 PM" src="https://github.com/user-attachments/assets/463d7083-5ad9-418b-92f8-5d0540371d5d">
 
+## python GUI
+
+<img width="818" alt="Screenshot 2024-09-21 at 10 14 05 PM" src="https://github.com/user-attachments/assets/1b7107b3-cebb-4477-8a83-b9c2f7b8fd2d">
 
 
-****example is for a public share****
+
+
+
+
+
+
 
 
 
