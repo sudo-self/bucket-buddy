@@ -28,8 +28,30 @@ LIST: Retrieves a list of objects in the bucket.<br>
 
 <code>[[r2_buckets]]<br>
 binding = 'MY_BUCKET'<br>
-bucket_name = 'your-bucket-name-here'<br>
-</code>
+bucket_name = 'your-bucket-name-here'<br></code><br>
+Then place a secret in your worker<br>
+<code>wrangler secret put MY_BUCKET</code><br>
+<code>YOUR-R2-STORAGE-API-KEY</code><br>
+
+
+
+1. binding in wrangler.toml
+2. secret
+3. Replace src/index.js with the one from this repo ```index.js```
+4. deploy your worker
+<code>npm wrangler deploy</code><br>
+
+open ```bucket_buddy.py``` and append this line with your worker URL<br>
+
+<code>self.api_url = 'https://your-worker.workers.dev'</code><br>
+
+***make sure your bucket is configured for public access***
+
+### run<code>python bucket_buddy.py</code><br>
+<img width="818" alt="Screenshot 2024-09-21 at 10 14 05 PM" src="https://github.com/user-attachments/assets/8e780f38-53cd-4e4d-9491-e5eb24fe4e87">
+
+
+alternatively upload the index.html to you bucket then access the buddy at https://your-worker.workers.dev/index.html
 
 
 ## coors cross-origin
@@ -58,20 +80,9 @@ bucket_name = 'your-bucket-name-here'<br>
 ]
 
 ```
-<code>wrangler secret put MY_BUCKET</code><br>
 
-1. open the .py add your worker domain<br>
-<code>self.api_url = 'https://your-worker.workers.dev'</code>
 
-<code>python3 bucket_buddy.py</code>
 
-## GUI
-
-<img width="818" alt="Screenshot 2024-09-21 at 10 14 05 PM" src="https://github.com/user-attachments/assets/8e780f38-53cd-4e4d-9491-e5eb24fe4e87">
-
-### macOS app included unzip the .tar then run  the executable 
-<code>tar -xvf bucketbuddy.tar</code><br>
-<code>./bucketbuddy</code><br>
 
 
 
