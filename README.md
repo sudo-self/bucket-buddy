@@ -62,11 +62,35 @@ bucket_name = 'your-bucket-name-here'<br>
 <code>
 wrangler secret put MY_BUCKET
 </code>
+<br>
 
+1. open the .py add your worker domain<br>
+<code>
+self.api_url = 'https://your-worker.workers.dev'
+</code>
 
+<code>
+python3 bucket_buddy.py
+</code>
 
+## GUI
 
 <img width="818" alt="Screenshot 2024-09-21 at 10 14 05 PM" src="https://github.com/user-attachments/assets/8e780f38-53cd-4e4d-9491-e5eb24fe4e87">
+
+### macOS app included unzip the .tar then run  the executable 
+<code>
+tar -xvf bucketbuddy.tar
+</code>
+<br>
+<code>
+./bucketbuddy
+</code>
+ENJOY!
+
+
+
+
+
 
 
 
