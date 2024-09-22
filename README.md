@@ -1,5 +1,7 @@
 # Bucket Buddy 🪣
 
+<img width="675" alt="Screenshot 2024-09-21 at 11 40 03 PM" src="https://github.com/user-attachments/assets/11a8b566-b8e4-48a2-acd0-ef97ac962857">
+
 ## Overview
 
 Bucket Buddy is a tool that allows users to interact with Cloudflare R2 storage using a simple interface. It includes a server-side worker for handling file uploads, downloads, and management.
