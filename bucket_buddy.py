@@ -12,7 +12,7 @@ class BucketBuddy(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.api_url = 'https://server.jessejesse.workers.dev'  # Update here
+        self.api_url = 'https://YOUR-DOMAIN.workers.dev'  <-- UPDATE THIS LINE
         self.init_ui()
         self.file_path = None
 
