@@ -11,8 +11,11 @@
       "Access-Control-Max-Age": "3600"
     });
 
-    your-worker-.workers.dev/           =  Object Not Found 
-    your-worker-.workers.dev/index.html = bucket_buddy  
+ Update these two lines in index.html
+ 
+  const apiUrl = 'https://your-worker.workers.dev';
+  const apiKey = 'your R2 api key'; 
+
  */
 
 
